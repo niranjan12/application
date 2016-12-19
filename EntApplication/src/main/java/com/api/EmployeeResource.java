@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.EmployeeDao;
 import com.dto.Employee;
+import com.vo.EmployeeVO;
 
 
 
@@ -21,11 +22,19 @@ public class EmployeeResource {
 		this.dao=dao;
 	}
 	@RequestMapping("/hello")
-	public Employee getEmployeeDetailsByName(){
+	public EmployeeVO getEmployeeDetailsByName(){
 		System.out.println(dao);
 		Employee e=dao.getEmployeeByName("Niranjan Sahu");
+		EmployeeVO vo=new EmployeeVO();
+		vo.setAddress(e.getAddress());
+		vo.setDept(e.getDept());
+		vo.setEmpType(e.getEmpType());
+		vo.setId(e.getId());
+		vo.setIsActive(e.getIsActive());
+		vo.setName(e.getName());
+		vo.setSal(e.getSal());
 		System.out.println(e.getName());
-		return e;
+		return vo;
 	}
 
 }
